@@ -73,7 +73,7 @@ export class SheetComponent implements OnInit {
     this.careerService.getCareers()
         .subscribe(careers => {
           this.careers = careers
-          this.firstCareer = careers[21];
+          this.firstCareer = careers[38];
           this.secondCareer = careers[29];
           this.getHabilities(this.firstCareer.id, this.secondCareer.id);
         },

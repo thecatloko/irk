@@ -1,11 +1,15 @@
-.selecao, .mat-option {
+.selecao mat-checkbox {
+    margin: 0em 0.5em;
+}
+
+.selecao mat-option {
     text-transform: capitalize;
 }
 
 .planilha {
     line-height: 1em;
-    column-gap: 0.5em;
     font-size: 0.75em;
+    /* column-gap: 0.5em; */
 }
 
 @media (orientation: landscape) {
@@ -24,14 +28,7 @@
     text-transform: uppercase;
     font-weight: bold;
     text-align: center;
-}
-
-.planilha .head:after {
-    content: "";
-    height: 1px;
-    width: 100%;
-    display: block;
-    border-top: 1px solid black;
+    border-bottom: 1px solid black;
 }
 
 .planilha .block {
@@ -49,9 +46,9 @@
 
 .planilha .descricao {
     white-space: pre-wrap;
-    /* text-align: justify; */
     text-transform: capitalize;
 }
+
 .planilha .check {
     text-transform: uppercase;
     font-weight: bold;
@@ -78,15 +75,25 @@
     line-height: 1.1em;
 }
 
+.planilha .justify {
+    text-align: justify;
+}
+
+.planilha .breakBefore {
+    page-break-before: always;
+}
+
 @media print {
     .main-content,
     .col-12 {
         padding: 0px;
     }
+
     .card {
         margin: 0px;
     }
-    .data-select {
+
+    .selecao {
         display: none;
     }
 }
