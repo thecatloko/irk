@@ -1,0 +1,97 @@
+<div class="main-content">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-12 data-select">
+              <div class="card selecao">
+                  <div class="card-header card-header-info">
+                      <h4 class="card-title">Dados</h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-3" *ngIf="false">
+                            <mat-form-field>
+                                <mat-label>Raça</mat-label>
+                                <mat-select [(value)]="selectedRace">
+                                    <mat-option *ngFor="let race of races" [value]="race">{{race.name}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <mat-form-field>
+                                <mat-label>Arquétipo</mat-label>
+                                <mat-select [(value)]="selectedArchetype" (selectionChange)="changeArchetype($event)">
+                                    <mat-option *ngFor="let archetype of archetypes" [value]="archetype">{{archetype.name}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <mat-form-field>
+                                <mat-label>Primeira Carreira</mat-label>
+                                <mat-select [(value)]="firstCareer" (selectionChange)="changeCareer($event)">
+                                    <mat-option *ngFor="let career of careers" [value]="career">{{career.name}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <mat-form-field>
+                                <mat-label>Segunda Carreira</mat-label>
+                                <mat-select [(value)]="secondCareer" (selectionChange)="changeCareer($event)">
+                                    <mat-option *ngFor="let career of careers" [value]="career">{{career.name}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-12">
+                <div class="planilha">
+                    <div class="arquetipo"  *ngIf="archetypeBenefitList">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td>
+                                        Arquétipo: {{selectedArchetype.name}}
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="arq_descricao">{{selectedArchetype.description}}</div>
+                                        <div class="beneficio" *ngFor="let benefit of archetypeBenefitList">
+                                            <span class="nome">{{benefit.name}}:</span>
+                                            <span class="descricao">{{benefit.description}}</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="habilidades" *ngIf="habilityList">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <td>
+                                        Habilidades
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class='habilidade' *ngFor="let hability of habilityList">
+                                            <div class='nome'>{{hability.name}}</div>
+                                            <div class='requisito' *ngIf="hability.requirement"><span style="font-weight: bold">Pré-Requisito:</span>{{hability.requirement}}</div>
+                                            <div class='descricao'>{{hability.description}}</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+          </div>
+      </div>
+  </div>
+</div>

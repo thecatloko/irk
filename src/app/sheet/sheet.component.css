@@ -1,0 +1,92 @@
+.selecao, .mat-option {
+    text-transform: capitalize;
+}
+
+.planilha {
+    line-height: 1em;
+    column-gap: 0.5em;
+    font-size: 0.75em;
+}
+
+@media (orientation: landscape) {
+    .planilha {
+        column-count: 4;
+    }
+}
+
+@media (orientation: portrait) {
+    .planilha {
+        column-count: 3;
+    }
+}
+
+.planilha .head {
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+}
+
+.planilha .head:after {
+    content: "";
+    height: 1px;
+    width: 100%;
+    display: block;
+    border-top: 1px solid black;
+}
+
+.planilha .block {
+    page-break-inside: avoid;
+}
+
+.planilha .block:after {
+    content: "";
+    height: 1px;
+    width: 95%;
+    display: block;
+    border-top: 1px solid darkgray;
+    margin: 0.25em auto;
+}
+
+.planilha .descricao {
+    white-space: pre-wrap;
+    /* text-align: justify; */
+    text-transform: capitalize;
+}
+.planilha .check {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.planilha .check:before {
+    content: "";
+    display: inline-flex;
+    width: 1em;
+    height: 1em;
+    margin-right: 0.5em;
+    border: 1px solid black;
+    border-radius: 4px;
+    position: relative;
+    top: 0.08em;
+}
+
+.planilha .bold {
+    font-weight: bold;
+}
+
+.planilha .italic {
+    font-style: italic;
+    line-height: 1.1em;
+}
+
+@media print {
+    .main-content,
+    .col-12 {
+        padding: 0px;
+    }
+    .card {
+        margin: 0px;
+    }
+    .data-select {
+        display: none;
+    }
+}
