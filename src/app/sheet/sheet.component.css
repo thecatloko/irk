@@ -6,36 +6,36 @@
     text-transform: capitalize;
 }
 
-.planilha {
+.geral {
     line-height: 1em;
     font-size: 0.75em;
     /* column-gap: 0.5em; */
 }
 
 @media (orientation: landscape) {
-    .planilha {
+    .geral {
         column-count: 4;
     }
 }
 
 @media (orientation: portrait) {
-    .planilha {
+    .geral {
         column-count: 3;
     }
 }
 
-.planilha .head {
+.geral .head {
     text-transform: uppercase;
     font-weight: bold;
     text-align: center;
     border-bottom: 1px solid black;
 }
 
-.planilha .block {
+.geral .block {
     page-break-inside: avoid;
 }
 
-.planilha .block:after {
+.geral .block:after {
     content: "";
     height: 1px;
     width: 95%;
@@ -44,17 +44,17 @@
     margin: 0.25em auto;
 }
 
-.planilha .descricao {
+.geral .descricao {
     white-space: pre-wrap;
     text-transform: capitalize;
 }
 
-.planilha .check {
+.geral .check {
     text-transform: uppercase;
     font-weight: bold;
 }
 
-.planilha .check:before {
+.geral .check:before {
     content: "";
     display: inline-flex;
     width: 1em;
@@ -66,20 +66,20 @@
     top: 0.08em;
 }
 
-.planilha .bold {
+.geral .bold {
     font-weight: bold;
 }
 
-.planilha .italic {
+.geral .italic {
     font-style: italic;
     line-height: 1.1em;
 }
 
-.planilha .justify {
+.geral .justify {
     text-align: justify;
 }
 
-.planilha .breakBefore {
+.geral .breakBefore {
     page-break-before: always;
 }
 

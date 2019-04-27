@@ -18,6 +18,8 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./sheet.component.css']
 })
 export class SheetComponent implements OnInit {
+  breakBefore = false;
+  justify = false;
 
   races: Race[];
   selectedRace: Race;
