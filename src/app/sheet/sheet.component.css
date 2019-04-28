@@ -2,59 +2,80 @@
     margin: 0em 0.5em;
 }
 
-.selecao mat-option {
+.selecao .mat-option-text {
     text-transform: capitalize;
 }
 
-.geral {
+.impressao {
     line-height: 1em;
     font-size: 0.75em;
-    /* column-gap: 0.5em; */
+}
+
+.groupContext,
+.magia {
+    column-fill: auto;
 }
 
 @media (orientation: landscape) {
-    .geral {
+    .groupContext {
         column-count: 4;
     }
-}
-
-@media (orientation: portrait) {
-    .geral {
+    .groupContext {
+        column-count: 4;
+    }
+    .magia {
         column-count: 3;
     }
 }
 
-.geral .head {
+@media (orientation: portrait) {
+    .groupContext {
+        column-count: 3;
+    }
+    .magia {
+        column-count: 2;
+    }
+}
+
+.impressao .head {
     text-transform: uppercase;
     font-weight: bold;
     text-align: center;
     border-bottom: 1px solid black;
 }
 
-.geral .block {
-    page-break-inside: avoid;
+.impressao .magia .tabela {
+    text-align: left;
+    display: inline-flex;
+    width: 100%;
+    justify-content: space-between;
 }
 
-.geral .block:after {
-    content: "";
-    height: 1px;
-    width: 95%;
-    display: block;
-    border-top: 1px solid darkgray;
-    margin: 0.25em auto;
+.impressao .magia .tabela > span {
+    width: 2.5em;
+    text-align: center;
+    border-left: 1px solid black;
 }
 
-.geral .descricao {
-    white-space: pre-wrap;
-    text-transform: capitalize;
+.impressao .magia .tabela > span:first-of-type {
+    text-align: left;
+    flex-grow: 1;
+    border-left: none;
 }
 
-.geral .check {
-    text-transform: uppercase;
-    font-weight: bold;
+table tr td {
+    border-bottom: 1px solid gray;
 }
 
-.geral .check:before {
+.impressao .check {
+    position: relative;
+}
+
+.impressao .check > *:first-child {
+    padding-left: calc(1em + 5px);
+}
+
+.impressao .check:before {
     content: "";
     display: inline-flex;
     width: 1em;
@@ -62,24 +83,27 @@
     margin-right: 0.5em;
     border: 1px solid black;
     border-radius: 4px;
-    position: relative;
-    top: 0.08em;
+    position: absolute;
 }
 
-.geral .bold {
+.impressao .descricao {
+    white-space: pre-wrap;
+}
+
+.impressao .bold {
     font-weight: bold;
 }
 
-.geral .italic {
+.impressao .italic {
     font-style: italic;
     line-height: 1.1em;
 }
 
-.geral .justify {
+.impressao .justify {
     text-align: justify;
 }
 
-.geral .breakBefore {
+.impressao .breakBefore {
     page-break-before: always;
 }
 

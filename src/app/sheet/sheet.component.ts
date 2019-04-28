@@ -9,6 +9,7 @@ import { ArchetypeService } from '../services/archetype.service'
 
 import { Career } from '../models/career'
 import { Hability } from '../models/hability'
+import { Magic } from '../models/magic'
 import { CareerService } from '../services/career.service'
 import { first } from 'rxjs/operators';
 
@@ -18,9 +19,12 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./sheet.component.css']
 })
 export class SheetComponent implements OnInit {
-  breakBefore = false;
-  justify = false;
-
+  showArchetype = true;
+  showHability = true;
+  showMagic = true;
+  breakBefore = true;
+  justify = true;
+  
   races: Race[];
   selectedRace: Race;
 
@@ -32,6 +36,7 @@ export class SheetComponent implements OnInit {
   firstCareer: Career;
   secondCareer: Career;
   habilityList: Hability[];
+  magicList: Magic[];
 
   constructor(private raceService: RaceService,
     private archetypeService: ArchetypeService,
@@ -78,6 +83,7 @@ export class SheetComponent implements OnInit {
           this.firstCareer = careers[38];
           this.secondCareer = careers[29];
           this.getHabilities(this.firstCareer.id, this.secondCareer.id);
+          this.getMagic(this.firstCareer.id, this.secondCareer.id);
         },
         error => {
           this.careers = [
@@ -97,6 +103,11 @@ export class SheetComponent implements OnInit {
     this.careerService.getHabilities(firstId, secondId)
         .subscribe(habilityList => this.habilityList = habilityList);
   }
+ 
+  getMagic(firstId: number, secondId: number): void {
+    this.careerService.getMagics(firstId, secondId)
+        .subscribe(magicList => this.magicList = magicList);
+  }
   
   changeArchetype(event) {
     this.getAchetypeBenefits(event.value.id);
@@ -104,8 +115,8 @@ export class SheetComponent implements OnInit {
   
   changeCareer(event) {
     if (this.firstCareer && this.secondCareer) {
-      this.careerService.getHabilities(this.firstCareer.id, this.secondCareer.id)
-        .subscribe(habilityList => this.habilityList = habilityList)
+      this.getHabilities(this.firstCareer.id, this.secondCareer.id);
+      this.getMagic(this.firstCareer.id, this.secondCareer.id);
     }
   }
 }

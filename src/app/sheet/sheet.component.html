@@ -1,90 +1,139 @@
 <div class="main-content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12 selecao">
-                <div class="card">
-                    <div class="card-header card-header-info">
-                        <h4 class="card-title">Dados</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6 col-lg-3" *ngIf="false">
-                                <mat-form-field>
-                                    <mat-label>Raça</mat-label>
-                                    <mat-select [(value)]="selectedRace">
-                                        <mat-option *ngFor="let race of races" [value]="race">{{race.name}}</mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                            </div>
-                            <div class="col-md-6 col-lg-3">
-                                <mat-form-field>
-                                    <mat-label>Arquétipo</mat-label>
-                                    <mat-select [(value)]="selectedArchetype" (selectionChange)="changeArchetype($event)">
-                                        <mat-option *ngFor="let archetype of archetypes" [value]="archetype">{{archetype.name}}</mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                            </div>
-                            <div class="col-md-6 col-lg-3">
-                                <mat-form-field>
-                                    <mat-label>Primeira Carreira</mat-label>
-                                    <mat-select [(value)]="firstCareer" (selectionChange)="changeCareer($event)">
-                                        <mat-option *ngFor="let career of careers" [value]="career">{{career.name}}</mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                            </div>
-                            <div class="col-md-6 col-lg-3">
-                                <mat-form-field>
-                                    <mat-label>Segunda Carreira</mat-label>
-                                    <mat-select [(value)]="secondCareer" (selectionChange)="changeCareer($event)">
-                                        <mat-option *ngFor="let career of careers" [value]="career">{{career.name}}</mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                            </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 selecao">
+                    <div class="card">
+                        <div class="card-header card-header-info">
+                            <h4 class="card-title">Dados</h4>
                         </div>
-                        <div class="row">
-                            <div class="col-12" style="display: inline-flex">
-                                <mat-checkbox [(ngModel)]="breakBefore">Agrupamentos em linhas diferentes</mat-checkbox>
-                                <mat-checkbox [(ngModel)]="justify">Justificar Texto</mat-checkbox>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 col-lg-3">
+                                    <mat-form-field>
+                                        <mat-label>Raça</mat-label>
+                                        <mat-select [(value)]="selectedRace">
+                                            <mat-option *ngFor="let race of races" [value]="race">{{race.name}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6 col-lg-3">
+                                    <mat-form-field>
+                                        <mat-label>Arquétipo</mat-label>
+                                        <mat-select [(value)]="selectedArchetype" (selectionChange)="changeArchetype($event)">
+                                            <mat-option *ngFor="let archetype of archetypes" [value]="archetype">{{archetype.name}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6 col-lg-3">
+                                    <mat-form-field>
+                                        <mat-label>Primeira Carreira</mat-label>
+                                        <mat-select [(value)]="firstCareer" (selectionChange)="changeCareer($event)">
+                                            <mat-option *ngFor="let career of careers" [value]="career">{{career.name}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6 col-lg-3">
+                                    <mat-form-field>
+                                        <mat-label>Segunda Carreira</mat-label>
+                                        <mat-select [(value)]="secondCareer" (selectionChange)="changeCareer($event)">
+                                            <mat-option *ngFor="let career of careers" [value]="career">{{career.name}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <button mat-mini-fab color="primary" onclick="print()">
-                                    <mat-icon>print</mat-icon>
-                                </button>
+                            <div class="row">
+                                <div class="col-12" style="display: inline-flex">
+                                    <mat-checkbox [(ngModel)]="showArchetype">Mostrar Arquétipo</mat-checkbox>
+                                    <mat-checkbox [(ngModel)]="showHability">Mostrar Habilidades</mat-checkbox>
+                                    <mat-checkbox [(ngModel)]="showMagic">Mostrar Magias</mat-checkbox>
+                                </div>
+                                <div class="col-12" style="display: inline-flex">
+                                    <!-- <mat-checkbox [(ngModel)]="breakBefore">Separar Arquétipo/Habilidades</mat-checkbox> -->
+                                    <mat-checkbox [(ngModel)]="justify">Justificar Texto</mat-checkbox>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <button mat-mini-fab color="primary" onclick="print()">
+                                        <mat-icon>print</mat-icon>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-12">
-                <div class="geral">
-                    <div class="group" [ngClass]="{'breakBefore': breakBefore}" *ngIf="archetypeBenefitList">
-                        <table>
-                            <thead>
-                                <div class="head">Arquétipo: {{selectedArchetype.name}}</div>
-                            </thead>
-                            <div class="block descricao" [ngClass]="{'justify': justify}">{{selectedArchetype.description}}</div>
-                            <div class="block beneficio" *ngFor="let benefit of archetypeBenefitList">
-                                <div class="check">{{benefit.name}}</div>
-                                <div class="descricao" [ngClass]="{'justify': justify}">{{benefit.description}}</div>
-                            </div>
-                        </table>
+                <div class="col-12 impressao">
+                    <div class="groupContext" *ngIf="showArchetype || showHability">
+                        <div class="arquetipo" *ngIf="archetypeBenefitList && showArchetype">
+                            <table>
+                                <thead>
+                                    <div class="head">Arquétipo: {{selectedArchetype.name}}</div>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="block descricao" [ngClass]="{'justify': justify}">{{selectedArchetype.description}}</div>
+                                        </td>
+                                    </tr>
+                                    <tr *ngFor="let benefit of archetypeBenefitList">
+                                        <td>
+                                            <div class="check bold"><span>{{benefit.name}}</span></div>
+                                            <div class="descricao" [ngClass]="{'justify': justify}">{{benefit.description}}</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="habilidades" [ngClass]="{'breakBefore': breakBefore}" *ngIf="habilityList && showHability">
+                            <table>
+                                <thead>
+                                    <div class="head">Habilidades</div>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let hability of habilityList">
+                                        <td>
+                                            <div class='check bold'><span>{{hability.name}}</span></div>
+                                            <div class='italic' *ngIf="hability.requirement"><span class="bold">Pré-Requisito: </span>{{hability.requirement}}</div>
+                                            <div class='descricao' [ngClass]="{'justify': justify}">{{hability.description}}</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    <div class="group" [ngClass]="{'breakBefore': breakBefore}" *ngIf="habilityList">
+                    <div class="magia breakBefore" *ngIf="magicList && showMagic">
                         <table>
                             <thead>
-                                <div class="head">Habilidades</div>
+                                <div class="head tabela">
+                                    <span>Magia</span>
+                                    <span>CST</span>
+                                    <span>ALC</span>
+                                    <span>ADE</span>
+                                    <span>POD</span>
+                                    <span>MAN</span>
+                                    <span>OFE</span>
+                                </div>
                             </thead>
-                            <div class='block habilidade' *ngFor="let hability of habilityList">
-                                <div class='check'>{{hability.name}}</div>
-                                <div class='italic' *ngIf="hability.requirement"><span class="bold">Pré-Requisito: </span>{{hability.requirement}}</div>
-                                <div class='descricao' [ngClass]="{'justify': justify}">{{hability.description}}</div>
-                            </div>
+                            <tbody>
+                                <tr *ngFor="let magic of magicList">
+                                    <td>
+                                        <div class="tabela bold check">
+                                            <span>{{magic.name}}</span>
+                                            <span>{{magic.cst}}</span>
+                                            <span>{{magic.alc}}</span>
+                                            <span>{{magic.ade}}</span>
+                                            <span>{{magic.pod}}</span>
+                                            <span>{{magic.man}}</span>
+                                            <span>{{magic.ofe}}</span>
+                                        </div>
+                                        <div class="descricao" [ngClass]="{'justify': justify}">{{magic.description}}</div>
+                                    </td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    

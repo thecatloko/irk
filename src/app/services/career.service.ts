@@ -6,6 +6,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { Career } from '../models/career';
 import { Hability } from '../models/hability';
+import { Magic } from '../models/magic';
 import { MessageService } from './message.service';
 
 const httpOptions = {
@@ -37,6 +38,14 @@ export class CareerService {
     return this.http.get<Hability[]>(url).pipe(
       tap(_ => this.log(`fetched Hability for Careers=${firstId}, ${secondId}`)),
       catchError(this.handleError<Hability[]>(`getHabilities for Careers=${firstId}, ${secondId}`))
+    );
+  }
+  
+  getMagics(firstId: number, secondId: number): Observable<Magic[]> {
+    const url = `${this.careerUrl}magic/?fId=${firstId}&sId=${secondId}`;
+    return this.http.get<Magic[]>(url).pipe(
+      tap(_ => this.log(`fetched Magic for Careers=${firstId}, ${secondId}`)),
+      catchError(this.handleError<Magic[]>(`getHabilities for Careers=${firstId}, ${secondId}`))
     );
   }
  
